@@ -6,7 +6,7 @@ Extension VSCode pour la coloration syntaxique des templates SPIP.
 
 Cette extension fournit la coloration syntaxique complète pour le langage de templates SPIP :
 
-### ✨ Syntaxes supportées
+### Syntaxes supportées
 
 - **Commentaires** : `[(#REM) votre commentaire ]`
 - **Balises SPIP** : `#TITRE`, `#DATE`, `#TEXTE`, `#ENV{variable}`, etc.
