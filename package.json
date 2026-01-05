@@ -1,0 +1,37 @@
+{
+    "name": "squeaking",
+    "displayName": "Squeaking",
+    "description": "Syntax highlighting for SPIP templates",
+    "version": "0.0.1",
+    "publisher": "Joachim-Sene",
+    "engines": {
+        "vscode": "^1.80.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "main": "./extension.js",
+    "contributes": {
+        "languages": [
+            {
+                "id": "spip",
+                "aliases": [
+                    "SPIP",
+                    "spip"
+                ],
+                "extensions": [
+                    ".html",
+                    ".spip"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "spip",
+                "scopeName": "text.html.spip",
+                "path": "./syntaxes/spip.tmLanguage.json"
+            }
+        ]
+    }
+}

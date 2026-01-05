@@ -1,0 +1,269 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "SPIP",
+    "scopeName": "text.html.spip",
+    "patterns": [
+        {
+            "include": "#comments"
+        },
+        {
+            "include": "#inclusions"
+        },
+        {
+            "include": "#boucles"
+        },
+        {
+            "include": "#balises"
+        },
+        {
+            "include": "#filtres"
+        },
+        {
+            "include": "#criteres"
+        },
+        {
+            "include": "#conditions"
+        },
+        {
+            "include": "text.html.basic"
+        }
+    ],
+    "repository": {
+        "comments": {
+            "patterns": [
+                {
+                    "name": "comment.block.spip",
+                    "begin": "\\[\\(#REM\\)",
+                    "end": "\\]"
+                }
+            ]
+        },
+        "inclusions": {
+            "patterns": [
+                {
+                    "name": "meta.tag.spip.inclusion",
+                    "begin": "(<)(INCLURE)",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "punctuation.definition.tag.begin.spip"
+                        },
+                        "2": {
+                            "name": "entity.name.tag.spip"
+                        }
+                    },
+                    "end": "(>)",
+                    "endCaptures": {
+                        "1": {
+                            "name": "punctuation.definition.tag.end.spip"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "#criteres"
+                        },
+                        {
+                            "include": "#balises"
+                        }
+                    ]
+                }
+            ]
+        },
+        "balises": {
+            "patterns": [
+                {
+                    "name": "variable.other.spip",
+                    "match": "#(ENV|GET|SET|INCLURE)(\\{[^}]*\\})?"
+                },
+                {
+                    "name": "entity.name.tag.spip",
+                    "match": "#[A-Z][A-Z0-9_]*"
+                }
+            ]
+        },
+        "boucles": {
+            "patterns": [
+                {
+                    "name": "meta.tag.spip.boucle",
+                    "begin": "(<)(BOUCLE)(_[a-zA-Z0-9_]+|[0-9]+)?",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "punctuation.definition.tag.begin.spip"
+                        },
+                        "2": {
+                            "name": "entity.name.tag.spip"
+                        },
+                        "3": {
+                            "name": "entity.other.attribute-name.spip"
+                        }
+                    },
+                    "end": "(>)",
+                    "endCaptures": {
+                        "1": {
+                            "name": "punctuation.definition.tag.end.spip"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "name": "entity.name.type.spip",
+                            "match": "\\(([A-Z_]+)\\)",
+                            "captures": {
+                                "1": {
+                                    "name": "support.type.table.spip"
+                                }
+                            }
+                        },
+                        {
+                            "include": "#criteres"
+                        }
+                    ]
+                },
+                {
+                    "name": "meta.tag.spip.boucle-close",
+                    "begin": "(</)(BOUCLE)(_[a-zA-Z0-9_]+|[0-9]+)?",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "punctuation.definition.tag.begin.spip"
+                        },
+                        "2": {
+                            "name": "entity.name.tag.spip"
+                        },
+                        "3": {
+                            "name": "entity.other.attribute-name.spip"
+                        }
+                    },
+                    "end": "(>)",
+                    "endCaptures": {
+                        "1": {
+                            "name": "punctuation.definition.tag.end.spip"
+                        }
+                    }
+                },
+                {
+                    "name": "meta.tag.spip.alternative.before",
+                    "match": "<(B_[a-zA-Z0-9_]+)>",
+                    "captures": {
+                        "0": {
+                            "name": "entity.name.tag.spip"
+                        },
+                        "1": {
+                            "name": "entity.other.attribute-name.spip"
+                        }
+                    }
+                },
+                {
+                    "name": "meta.tag.spip.alternative.after",
+                    "match": "</(B_[a-zA-Z0-9_]+)>",
+                    "captures": {
+                        "0": {
+                            "name": "entity.name.tag.spip"
+                        },
+                        "1": {
+                            "name": "entity.other.attribute-name.spip"
+                        }
+                    }
+                },
+                {
+                    "name": "meta.tag.spip.alternative.empty",
+                    "match": "<//(B_[a-zA-Z0-9_]+)>",
+                    "captures": {
+                        "0": {
+                            "name": "entity.name.tag.spip"
+                        },
+                        "1": {
+                            "name": "entity.other.attribute-name.spip"
+                        }
+                    }
+                },
+                {
+                    "name": "meta.tag.spip.alternative.avant-apres",
+                    "match": "<(AVANT|APRES)>",
+                    "captures": {
+                        "0": {
+                            "name": "entity.name.tag.spip"
+                        }
+                    }
+                }
+            ]
+        },
+        "criteres": {
+            "patterns": [
+                {
+                    "name": "meta.brace.curly.spip",
+                    "begin": "\\{",
+                    "end": "\\}",
+                    "beginCaptures": {
+                        "0": {
+                            "name": "punctuation.section.embedded.begin.spip"
+                        }
+                    },
+                    "endCaptures": {
+                        "0": {
+                            "name": "punctuation.section.embedded.end.spip"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "#balises"
+                        },
+                        {
+                            "include": "#filtres"
+                        },
+                        {
+                            "name": "keyword.operator.spip",
+                            "match": "(id_article|id|par|inverse|pagination|age|age_relatif|date|doublons|mots|lang)"
+                        },
+                        {
+                            "name": "string.quoted.double.spip",
+                            "begin": "\"",
+                            "end": "\""
+                        }
+                    ]
+                }
+            ]
+        },
+        "filtres": {
+            "patterns": [
+                {
+                    "name": "keyword.operator.filter.spip",
+                    "match": "\\|[a-zA-Z_][a-zA-Z0-9_]*",
+                    "captures": {
+                        "0": {
+                            "name": "support.function.filter.spip"
+                        }
+                    }
+                }
+            ]
+        },
+        "conditions": {
+            "patterns": [
+                {
+                    "name": "meta.embedded.block.spip",
+                    "begin": "\\[\\(#",
+                    "beginCaptures": {
+                        "0": {
+                            "name": "punctuation.definition.tag.begin.spip"
+                        }
+                    },
+                    "end": "\\)\\]",
+                    "endCaptures": {
+                        "0": {
+                            "name": "punctuation.definition.tag.end.spip"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "name": "keyword.control.conditional.spip",
+                            "match": "(ENV|GET|SET|INCLURE|EDIT|SURTITRE|SOUSTITRE|LOGO_ARTICLE_RUBRIQUE|DATE|LANG_DIR|LANG)"
+                        },
+                        {
+                            "include": "#filtres"
+                        },
+                        {
+                            "include": "#balises"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

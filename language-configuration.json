@@ -1,0 +1,76 @@
+{
+    "comments": {
+        "blockComment": [
+            "[(#REM)",
+            ")]"
+        ]
+    },
+    "brackets": [
+        [
+            "{",
+            "}"
+        ],
+        [
+            "[",
+            "]"
+        ],
+        [
+            "(",
+            ")"
+        ],
+        [
+            "<",
+            ">"
+        ]
+    ],
+    "autoClosingPairs": [
+        {
+            "open": "{",
+            "close": "}"
+        },
+        {
+            "open": "[",
+            "close": "]"
+        },
+        {
+            "open": "(",
+            "close": ")"
+        },
+        {
+            "open": "<",
+            "close": ">"
+        }
+    ],
+    "surroundingPairs": [
+        {
+            "open": "{",
+            "close": "}"
+        },
+        {
+            "open": "[",
+            "close": "]"
+        },
+        {
+            "open": "(",
+            "close": ")"
+        }
+    ],
+    "indentationRules": {
+        "increaseIndentPattern": "<BOUCLE(?:_[a-zA-Z0-9_]+|[0-9]+)?\\b",
+        "decreaseIndentPattern": "</BOUCLE(?:_[a-zA-Z0-9_]+|[0-9]+)?\\b"
+    },
+    "onEnterRules": [
+        {
+            "beforeText": "<BOUCLE(?:_[a-zA-Z0-9_]+|[0-9]+)?[^>]*>",
+            "action": {
+                "indentAction": "Indent"
+            }
+        },
+        {
+            "beforeText": "</BOUCLE(?:_[a-zA-Z0-9_]+|[0-9]+)?\\s*>",
+            "action": {
+                "indentAction": "Outdent"
+            }
+        }
+    ]
+}
