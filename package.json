@@ -4,6 +4,7 @@
     "description": "Syntax highlighting for SPIP templates",
     "version": "0.0.1",
     "publisher": "joachimsene",
+    "icon": "images/icon.png",
     "repository": {
         "type": "git",
         "url": "https://github.com/joachimsene/squeaking-spip"
