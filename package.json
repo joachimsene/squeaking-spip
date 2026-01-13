@@ -2,7 +2,7 @@
     "name": "squeaking",
     "displayName": "Squeaking",
     "description": "Syntax highlighting for SPIP templates",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "publisher": "joachimsene",
     "icon": "images/icon.png",
     "repository": {
