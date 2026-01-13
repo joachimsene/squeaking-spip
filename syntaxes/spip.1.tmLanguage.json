@@ -13,9 +13,6 @@
             "include": "#boucles"
         },
         {
-            "include": "#balises-optionnelles"
-        },
-        {
             "include": "#balises"
         },
         {
@@ -71,41 +68,11 @@
                 }
             ]
         },
-        "balises-optionnelles": {
-            "patterns": [
-                {
-                    "name": "meta.balise-optionnelle.spip",
-                    "begin": "\\[",
-                    "end": "\\]",
-                    "beginCaptures": {
-                        "0": {
-                            "name": "punctuation.definition.balise-optionnelle.begin.spip"
-                        }
-                    },
-                    "endCaptures": {
-                        "0": {
-                            "name": "punctuation.definition.balise-optionnelle.end.spip"
-                        }
-                    },
-                    "patterns": [
-                        {
-                            "include": "#balises"
-                        },
-                        {
-                            "include": "#filtres"
-                        },
-                        {
-                            "include": "#conditions"
-                        }
-                    ]
-                }
-            ]
-        },
         "balises": {
             "patterns": [
                 {
-                    "name": "variable.other.spip.special",
-                    "match": "#(ENV|GET|SET|INCLURE|TOTAL_BOUCLE|GRAND_TOTAL|PAGINATION)(\\{[^}]*\\})?"
+                    "name": "variable.other.spip",
+                    "match": "#(ENV|GET|SET|INCLURE)(\\{[^}]*\\})?"
                 },
                 {
                     "name": "entity.name.tag.spip",
@@ -236,68 +203,19 @@
                     },
                     "patterns": [
                         {
-                            "name": "keyword.operator.negation.spip",
-                            "match": "!"
-                        },
-                        {
-                            "name": "keyword.operator.optional.spip",
-                            "match": "\\?"
-                        },
-                        {
-                            "name": "keyword.operator.comparison.spip",
-                            "match": "(!=|!==|==|>=|<=|>|<|=|\\sIN\\s|!IN\\s|\\sLIKE\\s)"
-                        },
-                        {
-                            "name": "keyword.operator.tri.spip",
-                            "match": "\\b(par|inverse|num|multi|par_ordre_liste)\\b"
-                        },
-                        {
-                            "name": "keyword.operator.selection.spip",
-                            "match": "\\b(branche|doublons|unique|exclus|logo)\\b"
-                        },
-                        {
-                            "name": "keyword.operator.date.spip",
-                            "match": "\\b(age|age_redac|age_relatif|date|mois|mois_redac|annee|annee_redac)\\b"
-                        },
-                        {
-                            "name": "keyword.operator.standard.spip",
-                            "match": "\\b(id_article|id_rubrique|id_secteur|id_mot|id|pagination|lang|titre|hasard)\\b"
-                        },
-                        {
-                            "name": "constant.numeric.range.spip",
-                            "match": "\\b(n|debut_[a-zA-Z0-9_]+|\\d+)\\s*[-,/]\\s*(n|\\d+)\\b"
-                        },
-                        {
-                            "name": "constant.numeric.spip",
-                            "match": "\\b\\d+\\b"
-                        },
-                        {
                             "include": "#balises"
                         },
                         {
                             "include": "#filtres"
                         },
                         {
-                            "name": "string.quoted.double.spip",
-                            "begin": "\"",
-                            "end": "\"",
-                            "patterns": [
-                                {
-                                    "name": "constant.character.escape.spip",
-                                    "match": "\\\\."
-                                }
-                            ]
+                            "name": "keyword.operator.spip",
+                            "match": "(id_article|id|par|inverse|pagination|age|age_relatif|date|doublons|mots|lang)"
                         },
                         {
-                            "name": "string.quoted.single.spip",
-                            "begin": "'",
-                            "end": "'",
-                            "patterns": [
-                                {
-                                    "name": "constant.character.escape.spip",
-                                    "match": "\\\\."
-                                }
-                            ]
+                            "name": "string.quoted.double.spip",
+                            "begin": "\"",
+                            "end": "\""
                         }
                     ]
                 }
@@ -305,10 +223,6 @@
         },
         "filtres": {
             "patterns": [
-                {
-                    "name": "keyword.operator.filter.test.spip",
-                    "match": "\\|(sinon|\\?|==|!=|!==|>=|<=|>|<)"
-                },
                 {
                     "name": "keyword.operator.filter.spip",
                     "match": "\\|[a-zA-Z_][a-zA-Z0-9_]*",
@@ -339,23 +253,13 @@
                     "patterns": [
                         {
                             "name": "keyword.control.conditional.spip",
-                            "match": "\\b(ENV|GET|SET|INCLURE|EDIT|SURTITRE|SOUSTITRE|LOGO_ARTICLE_RUBRIQUE|DATE|LANG_DIR|LANG|TEXTE|TITRE|TOTAL_BOUCLE)\\b"
+                            "match": "(ENV|GET|SET|INCLURE|EDIT|SURTITRE|SOUSTITRE|LOGO_ARTICLE_RUBRIQUE|DATE|LANG_DIR|LANG)"
                         },
                         {
                             "include": "#filtres"
                         },
                         {
                             "include": "#balises"
-                        },
-                        {
-                            "name": "string.quoted.double.spip",
-                            "begin": "\"",
-                            "end": "\""
-                        },
-                        {
-                            "name": "string.quoted.single.spip",
-                            "begin": "'",
-                            "end": "'"
                         }
                     ]
                 }
