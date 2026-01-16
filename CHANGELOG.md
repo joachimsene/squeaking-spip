@@ -2,6 +2,13 @@
 
 All notable changes to the "squeaking" extension will be documented in this file.
 
+
+## [0.0.3] - 2026-01-16
+
+### Modified
+- Update SPIP syntax for <INCLURE> tag in conditional variables brackets
+- repackage vsix
+
 ## [0.0.2] - 2026-01-13
 
 ### Modified

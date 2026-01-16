@@ -7,10 +7,16 @@
             "include": "#comments"
         },
         {
+            "include": "#translations"
+        },
+        {
             "include": "#inclusions"
         },
         {
             "include": "#boucles"
+        },
+        {
+            "include": "#conditions"
         },
         {
             "include": "#balises-optionnelles"
@@ -25,9 +31,6 @@
             "include": "#criteres"
         },
         {
-            "include": "#conditions"
-        },
-        {
             "include": "text.html.basic"
         }
     ],
@@ -38,6 +41,19 @@
                     "name": "comment.block.spip",
                     "begin": "\\[\\(#REM\\)",
                     "end": "\\]"
+                }
+            ]
+        },
+        "translations": {
+            "patterns": [
+                {
+                    "name": "string.other.translation.spip",
+                    "match": "<:[a-zA-Z0-9_]+:[a-zA-Z0-9_]*>",
+                    "captures": {
+                        "0": {
+                            "name": "constant.language.translation.spip"
+                        }
+                    }
                 }
             ]
         },
@@ -89,6 +105,15 @@
                     },
                     "patterns": [
                         {
+                            "include": "#translations"
+                        },
+                        {
+                            "include": "#inclusions"
+                        },
+                        {
+                            "include": "#boucles"
+                        },
+                        {
                             "include": "#balises"
                         },
                         {
@@ -96,6 +121,9 @@
                         },
                         {
                             "include": "#conditions"
+                        },
+                        {
+                            "include": "text.html.basic"
                         }
                     ]
                 }
@@ -108,8 +136,21 @@
                     "match": "#(ENV|GET|SET|INCLURE|TOTAL_BOUCLE|GRAND_TOTAL|PAGINATION)(\\{[^}]*\\})?"
                 },
                 {
+                    "name": "keyword.other.spip.edit",
+                    "match": "#EDIT\\{[a-zA-Z0-9_]+\\}",
+                    "captures": {
+                        "0": {
+                            "name": "support.function.edit.spip"
+                        }
+                    }
+                },
+                {
+                    "name": "variable.other.spip.modele",
+                    "match": "#MODELE\\{[^}]+\\}"
+                },
+                {
                     "name": "entity.name.tag.spip",
-                    "match": "#[A-Z][A-Z0-9_]*"
+                    "match": "#[A-Z][A-Z0-9_]*(\\{[^}]*\\})?"
                 }
             ]
         },
@@ -323,14 +364,18 @@
         "conditions": {
             "patterns": [
                 {
-                    "name": "meta.embedded.block.spip",
-                    "begin": "\\[\\(#",
+                    "comment": "Conditional block with optional content: [(#BALISE|filter|oui) content ]",
+                    "name": "meta.embedded.block.spip.conditional",
+                    "begin": "\\[\\((#[A-Z][A-Z0-9_]*)",
                     "beginCaptures": {
                         "0": {
                             "name": "punctuation.definition.tag.begin.spip"
+                        },
+                        "1": {
+                            "name": "entity.name.tag.spip"
                         }
                     },
-                    "end": "\\)\\]",
+                    "end": "\\]",
                     "endCaptures": {
                         "0": {
                             "name": "punctuation.definition.tag.end.spip"
@@ -338,14 +383,30 @@
                     },
                     "patterns": [
                         {
-                            "name": "keyword.control.conditional.spip",
-                            "match": "\\b(ENV|GET|SET|INCLURE|EDIT|SURTITRE|SOUSTITRE|LOGO_ARTICLE_RUBRIQUE|DATE|LANG_DIR|LANG|TEXTE|TITRE|TOTAL_BOUCLE)\\b"
+                            "include": "#inclusions"
+                        },
+                        {
+                            "include": "#boucles"
                         },
                         {
                             "include": "#filtres"
                         },
                         {
+                            "include": "#criteres"
+                        },
+                        {
                             "include": "#balises"
+                        },
+                        {
+                            "include": "#translations"
+                        },
+                        {
+                            "name": "keyword.control.conditional.test.spip",
+                            "match": "\\b(oui|non)\\b"
+                        },
+                        {
+                            "name": "punctuation.section.parens.spip",
+                            "match": "\\)"
                         },
                         {
                             "name": "string.quoted.double.spip",
@@ -356,6 +417,9 @@
                             "name": "string.quoted.single.spip",
                             "begin": "'",
                             "end": "'"
+                        },
+                        {
+                            "include": "text.html.basic"
                         }
                     ]
                 }
